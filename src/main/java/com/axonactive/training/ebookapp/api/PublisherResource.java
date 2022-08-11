@@ -5,6 +5,7 @@ import com.axonactive.training.ebookapp.entity.Publisher;
 import com.axonactive.training.ebookapp.exception.ApiException;
 import com.axonactive.training.ebookapp.service.PublisherService;
 import com.axonactive.training.ebookapp.service.dto.PublisherDto;
+import com.axonactive.training.ebookapp.service.dto.PublisherStatisticsDto;
 import com.axonactive.training.ebookapp.service.mapper.PublisherMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +34,11 @@ public class PublisherResource {
         Publisher publisher = publisherService.findById(id)
                 .orElseThrow(ApiException::PublisherNotFound);
         return ResponseEntity.ok().body(PublisherMapper.INSTANCE.toDto(publisher));
+    }
+
+    @GetMapping("/statistics")
+    public List<PublisherStatisticsDto> getPublisherStatistics() {
+        return publisherService.getPublisherStatisticsJPQL();
     }
 
     @PostMapping
@@ -67,4 +73,6 @@ public class PublisherResource {
         publisherService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+
 }
