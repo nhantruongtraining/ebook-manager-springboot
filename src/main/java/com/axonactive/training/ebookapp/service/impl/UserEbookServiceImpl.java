@@ -4,11 +4,13 @@ import com.axonactive.training.ebookapp.entity.UserEbook;
 import com.axonactive.training.ebookapp.repository.UserEbookRepository;
 import com.axonactive.training.ebookapp.service.UserEbookService;
 import com.axonactive.training.ebookapp.service.dto.UserEbookDto;
+import com.axonactive.training.ebookapp.service.dto.UserEbookStatisticsDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +41,11 @@ public class UserEbookServiceImpl implements UserEbookService {
     @Override
     public void deleteById(Integer id) {
         userEbookRepository.deleteById(id);
+    }
+
+    @Override
+    public List<UserEbookStatisticsDto> getUserEbookStatisticsJPQL(LocalDate startDate, LocalDate endDate) {
+        return userEbookRepository.listFavoriteEbooksByUserByDateJPQL(startDate, endDate);
     }
 
 //    @Override

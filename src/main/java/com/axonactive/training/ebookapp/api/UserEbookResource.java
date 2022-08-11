@@ -7,13 +7,17 @@ import com.axonactive.training.ebookapp.security.service.UserService;
 import com.axonactive.training.ebookapp.service.EbookService;
 import com.axonactive.training.ebookapp.service.UserEbookService;
 import com.axonactive.training.ebookapp.service.dto.UserEbookDto;
+import com.axonactive.training.ebookapp.service.dto.UserEbookStatisticsDto;
 import com.axonactive.training.ebookapp.service.mapper.UserEbookMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,6 +47,14 @@ public class UserEbookResource {
         if (!userEbook.isPresent())
             throw ApiException.notFound("UserEbookNotExisted","UserEbook Not Found");
         return ResponseEntity.ok().body(UserEbookMapper.INSTANCE.toDto(userEbook.get()));
+    }
+
+    @GetMapping("/statistics")
+    public List<UserEbookStatisticsDto> getUserEbookStatisticsDto(@RequestParam(value = "startDate")String startDate,
+                                                                  @RequestParam(value = "endDate")String endDate) {
+        LocalDate startDateInput = LocalDate.parse(startDate);
+        LocalDate endDateInput = LocalDate.parse(endDate);
+        return userEbookService.getUserEbookStatisticsJPQL(startDateInput,endDateInput);
     }
 
     /**
