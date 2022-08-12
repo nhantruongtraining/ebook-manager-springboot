@@ -50,11 +50,12 @@ public class UserEbookResource {
     }
 
     @GetMapping("/statistics")
-    public List<UserEbookStatisticsDto> getUserEbookStatisticsDto(@RequestParam(value = "startDate")String startDate,
+    public List<UserEbookStatisticsDto> getUserEbookStatisticsDto(@RequestParam(value = "username") String username,
+                                                                  @RequestParam(value = "startDate") String startDate,
                                                                   @RequestParam(value = "endDate")String endDate) {
         LocalDate startDateInput = LocalDate.parse(startDate);
         LocalDate endDateInput = LocalDate.parse(endDate);
-        return userEbookService.getUserEbookStatisticsJPQL(startDateInput,endDateInput);
+        return userEbookService.getUserEbookStatisticsJPQL(username, startDateInput,endDateInput);
     }
 
     /**

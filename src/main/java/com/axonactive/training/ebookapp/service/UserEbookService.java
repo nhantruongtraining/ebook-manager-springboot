@@ -17,5 +17,6 @@ public interface UserEbookService {
 //    List<UserEbook> findByEbookTitleContaining(String ebookTitle);
 //    List<UserEbookDto> returnAllFavorite(Integer userID);
 
-    List<UserEbookStatisticsDto> getUserEbookStatisticsJPQL(LocalDate startDate, LocalDate endDate);
+
+    List<UserEbookStatisticsDto> getUserEbookStatisticsJPQL(String username, LocalDate startDate, LocalDate endDate);
 }

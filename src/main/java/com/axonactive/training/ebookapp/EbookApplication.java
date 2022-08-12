@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
-public class EbookappApplication {
+public class EbookApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EbookappApplication.class, args);
+		SpringApplication.run(EbookApplication.class, args);
 	}
 
 }

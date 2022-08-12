@@ -29,9 +29,11 @@ public interface UserEbookRepository extends JpaRepository<UserEbook, Integer> {
             "(e.title, u.username, ue.favoriteDate) " +
             "FROM UserEbook ue, Ebook e, User u " +
             "WHERE ue.user.id = u.id AND ue.ebook.id = e.id " +
+            "AND u.username = :username " +
             "AND ue.favorite = 'TRUE' AND ue.favoriteDate >= :startDate AND ue.favoriteDate < :endDate " +
             "ORDER BY e.title")
-    List<UserEbookStatisticsDto> listFavoriteEbooksByUserByDateJPQL(@Param("startDate") LocalDate startDate,
+    List<UserEbookStatisticsDto> listFavoriteEbooksByUserByDateJPQL(@Param("username") String username,
+                                                                    @Param("startDate") LocalDate startDate,
                                                                     @Param("endDate") LocalDate endDate);
 
 }
