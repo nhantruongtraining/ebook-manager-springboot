@@ -19,4 +19,6 @@ public interface UserEbookService {
 
 
     List<UserEbookStatisticsDto> getUserEbookStatisticsJPQL(String username, LocalDate startDate, LocalDate endDate);
+
+    List<UserEbook> getAllUserEbookByUsername(String username);
 }

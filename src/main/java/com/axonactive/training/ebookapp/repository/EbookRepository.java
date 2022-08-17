@@ -12,6 +12,6 @@ import java.util.UUID;
 @Repository
 public interface EbookRepository extends JpaRepository<Ebook, Integer> {
 
-    List<Ebook> findByTitleContainingIgnoreCase(String ebookTitle);
+    List<Ebook> queryByTitleContainingIgnoreCase(String ebookTitle);
 
 }

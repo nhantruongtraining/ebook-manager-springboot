@@ -49,6 +49,12 @@ public class UserEbookResource {
         return ResponseEntity.ok().body(UserEbookMapper.INSTANCE.toDto(userEbook.get()));
     }
 
+    @GetMapping("/")
+    public ResponseEntity<List<UserEbookDto>> getAllUserEbookByUserId(@RequestParam(value = "username") String username) {
+        List<UserEbook> userEbookList = userEbookService.getAllUserEbookByUsername(username);
+        return ResponseEntity.ok(UserEbookMapper.INSTANCE.toDtos(userEbookList));
+    }
+
     @GetMapping("/statistics")
     public List<UserEbookStatisticsDto> getUserEbookStatisticsDto(@RequestParam(value = "username") String username,
                                                                   @RequestParam(value = "startDate") String startDate,
@@ -75,7 +81,7 @@ public class UserEbookResource {
 
     /**
      * The following function returns all favorite UserEbook of a specific User
-     * @param userId
+     * @param
      * @return List of favorite
      */
 //    @GetMapping("/{userId}/favorites")

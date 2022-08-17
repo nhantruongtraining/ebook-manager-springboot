@@ -3,6 +3,7 @@ package com.axonactive.training.ebookapp.service.impl;
 import com.axonactive.training.ebookapp.entity.UserEbook;
 import com.axonactive.training.ebookapp.repository.UserEbookRepository;
 import com.axonactive.training.ebookapp.service.UserEbookService;
+import com.axonactive.training.ebookapp.service.dto.UserEbookDto;
 import com.axonactive.training.ebookapp.service.dto.UserEbookStatisticsDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,6 +47,12 @@ public class UserEbookServiceImpl implements UserEbookService {
     public List<UserEbookStatisticsDto> getUserEbookStatisticsJPQL(String username, LocalDate startDate, LocalDate endDate) {
         return userEbookRepository.listFavoriteEbooksByUserByDateJPQL(username, startDate, endDate);
     }
+
+    @Override
+    public List<UserEbook> getAllUserEbookByUsername(String username) {
+        return userEbookRepository.findByUserUsername(username);
+    }
+
 
 //    @Override
 //    public List<UserEbook> findByEbookTitleContaining(String ebookTitle) {

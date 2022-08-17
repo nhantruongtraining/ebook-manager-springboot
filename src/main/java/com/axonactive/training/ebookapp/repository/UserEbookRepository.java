@@ -36,4 +36,11 @@ public interface UserEbookRepository extends JpaRepository<UserEbook, Integer> {
                                                                     @Param("startDate") LocalDate startDate,
                                                                     @Param("endDate") LocalDate endDate);
 
+    // List all UserEbook By owned by a user
+    List<UserEbook> findByUserUsername(String username);
+
+
+//    @Query("SELECT new com.axonactive.training.ebookapp.service.dto.UserEbookDto() " +
+//    "FROM User"
+
 }
